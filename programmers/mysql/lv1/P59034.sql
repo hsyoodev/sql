@@ -1,4 +1,5 @@
 -- 코드를 입력하세요
+
 -- 2024-09-24
 SELECT *
 FROM ANIMAL_INS
