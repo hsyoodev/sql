@@ -1,0 +1,14 @@
+-- 코드를 입력하세요
+-- 2024-11-11
+SELECT A.MEMBER_NAME, B.REVIEW_TEXT, DATE_FORMAT(B.REVIEW_DATE, '%Y-%m-%d') AS REVIEW_DATE
+FROM MEMBER_PROFILE AS A
+JOIN (
+      SELECT *
+      FROM REST_REVIEW
+      WHERE MEMBER_ID IN (SELECT MEMBER_ID
+                          FROM (SELECT MEMBER_ID, RANK() OVER(ORDER BY COUNT(*) DESC) AS 'RANK'
+                                FROM REST_REVIEW
+                                GROUP BY MEMBER_ID) AS A
+                          WHERE A.RANK = 1)
+     ) AS B USING(MEMBER_ID)
+ORDER BY REVIEW_DATE, REVIEW_TEXT;
