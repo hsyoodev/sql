@@ -1,5 +1,0 @@
--- 코드를 작성해주세요
--- 2024-10-04
-SELECT COUNT(*) AS COUNT
-FROM ECOLI_DATA
-WHERE (GENOTYPE & 7) IN (1, 4, 5);
