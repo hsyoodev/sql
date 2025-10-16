@@ -23,5 +23,5 @@ GROUP BY
         TO_CHAR(START_DATE, 'FMMM')
       , CAR_ID
 ORDER BY
-        MONTH
-      , CAR_ID DESC;
+        TO_NUMBER(MONTH)
+      , CAR_ID DESC
