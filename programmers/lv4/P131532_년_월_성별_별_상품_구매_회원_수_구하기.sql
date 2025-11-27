@@ -1,0 +1,23 @@
+SELECT
+        A.YEAR
+      , A.MONTH
+      , B.GENDER
+      , COUNT(DISTINCT B.USER_ID) AS USERS
+FROM
+        (
+            SELECT
+                    TO_NUMBER(TO_CHAR(SALES_DATE, 'YYYY')) AS YEAR
+                  , TO_NUMBER(TO_CHAR(SALES_DATE, 'MM')) AS MONTH
+                  , USER_ID
+            FROM
+                    ONLINE_SALE
+        ) A
+      , USER_INFO B
+WHERE
+        A.USER_ID = B.USER_ID
+AND
+        B.GENDER IS NOT NULL
+GROUP BY
+        A.YEAR, A.MONTH, B.GENDER
+ORDER BY
+        YEAR, MONTH, GENDER;
