@@ -1,3 +1,4 @@
+-- 코드를 입력하세요
 SELECT
         CATEGORY
       , PRICE AS MAX_PRICE
@@ -8,7 +9,7 @@ WHERE
         (CATEGORY, PRICE) IN (
                                 SELECT
                                         CATEGORY
-                                      , MAX(PRICE)
+                                      , MAX(PRICE) AS MAX_PRICE
                                 FROM
                                         FOOD_PRODUCT
                                 WHERE
