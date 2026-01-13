@@ -1,22 +1,24 @@
+-- 코드를 입력하세요
+WITH CUSTOM_ONLINE_SALE AS
+(
+    SELECT
+            TO_NUMBER(TO_CHAR(SALES_DATE, 'YYYY')) AS YEAR
+          , TO_NUMBER(TO_CHAR(SALES_DATE, 'MM')) AS MONTH
+          , USER_ID
+    FROM
+            ONLINE_SALE
+)
 SELECT
         A.YEAR
       , A.MONTH
       , B.GENDER
-      , COUNT(DISTINCT B.USER_ID) AS USERS
+      , COUNT(DISTINCT A.USER_ID) AS USERS
 FROM
-        (
-            SELECT
-                    TO_NUMBER(TO_CHAR(SALES_DATE, 'YYYY')) AS YEAR
-                  , TO_NUMBER(TO_CHAR(SALES_DATE, 'MM')) AS MONTH
-                  , USER_ID
-            FROM
-                    ONLINE_SALE
-        ) A
-      , USER_INFO B
-WHERE
-        A.USER_ID = B.USER_ID
-AND
-        B.GENDER IS NOT NULL
+        CUSTOM_ONLINE_SALE A
+INNER JOIN
+        USER_INFO B
+        ON A.USER_ID = B.USER_ID
+        AND B.GENDER IS NOT NULL
 GROUP BY
         A.YEAR, A.MONTH, B.GENDER
 ORDER BY
