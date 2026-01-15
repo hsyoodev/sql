@@ -1,17 +1,21 @@
+-- 코드를 입력하세요
+WITH CUSTOM_JULY AS
+ (
+    SELECT
+            FLAVOR
+          , SUM(TOTAL_ORDER) AS JULY_TOTAL_ORDER
+    FROM
+            JULY
+    GROUP BY
+            FLAVOR
+ )
 SELECT
-        A.FLAVOR
+        FLAVOR
 FROM
-        FIRST_HALF A
-      , (
-            SELECT
-                    FLAVOR, SUM(TOTAL_ORDER) AS TOTAL_ORDER
-            FROM
-                    JULY
-            GROUP BY
-                    FLAVOR
-        ) B
-WHERE
-        A.FLAVOR = B.FLAVOR
+        FIRST_HALF
+INNER JOIN
+        CUSTOM_JULY
+        USING(FLAVOR)
 ORDER BY
-        (A.TOTAL_ORDER + B.TOTAL_ORDER) DESC
-FETCH NEXT 3 ROWS ONLY;
+        (TOTAL_ORDER + JULY_TOTAL_ORDER) DESC
+        FETCH NEXT 3 ROWS ONLY;
