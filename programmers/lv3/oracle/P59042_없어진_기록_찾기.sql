@@ -1,3 +1,4 @@
+-- 코드를 입력하세요
 SELECT
         ANIMAL_ID
       , NAME
@@ -6,8 +7,9 @@ FROM
 WHERE
         ANIMAL_ID NOT IN (
                             SELECT
-                                    ANIMAL_ID
+                                ANIMAL_ID
                             FROM
-                                    ANIMAL_INS
+                                ANIMAL_INS
                          )
-ORDER BY ANIMAL_ID;
+ORDER BY
+        ANIMAL_ID, NAME;
