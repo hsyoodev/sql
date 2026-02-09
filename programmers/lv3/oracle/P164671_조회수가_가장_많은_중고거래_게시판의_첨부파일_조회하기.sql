@@ -1,16 +1,17 @@
+-- 코드를 입력하세요
 SELECT
-        ('/home/grep/src/' || BOARD_ID || '/' || FILE_ID || FILE_NAME || FILE_EXT) AS FILE_PATH
+        '/home/grep/src/' || BOARD_ID || '/' || FILE_ID || FILE_NAME || FILE_EXT AS FILE_PATH
 FROM
+        USED_GOODS_BOARD
+INNER JOIN
         USED_GOODS_FILE
+        USING(BOARD_ID)
 WHERE
-        BOARD_ID IN (
+        VIEWS IN (
                         SELECT
-                                BOARD_ID
+                            MAX(VIEWS)
                         FROM
-                                USED_GOODS_BOARD
-                        ORDER BY
-                                VIEWS DESC
-                        FETCH FIRST 1 ROWS ONLY
-                    )
+                            USED_GOODS_BOARD
+                 )
 ORDER BY
         FILE_ID DESC;
