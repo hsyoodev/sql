@@ -1,19 +1,18 @@
+-- 코드를 입력하세요
 SELECT
-        ID
-      , NAME
-      , HOST_ID
+        *
 FROM
         PLACES
 WHERE
         HOST_ID IN (
                         SELECT
-                                HOST_ID
+                            HOST_ID
                         FROM
-                                PLACES
+                            PLACES
                         GROUP BY
-                                HOST_ID
+                            HOST_ID
                         HAVING
-                                COUNT(*) >= 2
+                            COUNT(*) >= 2
                    )
 ORDER BY
         ID;
