@@ -27,4 +27,3 @@ GROUP BY
         CAR_ID
 ORDER BY
         CAR_ID DESC;
-        
